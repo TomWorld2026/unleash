@@ -1,5 +1,10 @@
 resource "aws_ecs_cluster" "cluster" {
   name = "candidate-cluster-${var.region}"
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }  
 }
 
 data "aws_vpc" "default" {
