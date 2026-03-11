@@ -25,6 +25,12 @@ resource "aws_apigatewayv2_route" "greet" {
   authorizer_id = aws_apigatewayv2_authorizer.cognito.id
 }
 
+resource "aws_kms_key" "kms" {
+  description = "KMS encryption key"
+  deletion_window_in_days = 7
+  enable_key_rotation     = true
+}
+
 resource "aws_cloudwatch_log_group" "api_logs" {
   name              = "/aws/apigateway/candidate-api-${var.region}"
   retention_in_days = 7
