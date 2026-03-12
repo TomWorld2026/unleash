@@ -35,6 +35,14 @@ resource "aws_iam_policy" "lambda_permissions" {
           "kms:GenerateDataKey"
         ]
         Resource = aws_kms_key.dynamodb.arn
+      },
+
+      {
+        Effect = "Allow"
+        Action = [
+          "sns:Publish"
+        ]
+        Resource = var.sns_topic
       }
 
     ]

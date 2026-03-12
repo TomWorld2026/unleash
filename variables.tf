@@ -7,5 +7,5 @@ variable "repo_url" {
 }
 
 variable "sns_topic" {
-  default = "arn:aws:sns:ap-southeast-2:139979204351:testtopic"
+  default = "arn:aws:sns:us-east-1:139979204351:testtopic"
 }
