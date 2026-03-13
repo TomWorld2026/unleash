@@ -53,3 +53,27 @@ resource "aws_lambda_function" "dispatcher" {
   handler = "dispatcher.lambda_handler"
   runtime = "python3.11"
 }
+
+resource "aws_lambda_permission" "apigw_greet" {
+
+  statement_id  = "AllowAPIGatewayInvokeGreet"
+
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.greet.function_name
+
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+}
+
+resource "aws_lambda_permission" "apigw_dispatch" {
+
+  statement_id  = "AllowAPIGatewayInvokeDispatch"
+
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.dispatcher.function_name
+
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+}
