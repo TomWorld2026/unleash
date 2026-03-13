@@ -25,6 +25,27 @@ resource "aws_apigatewayv2_route" "greet" {
   authorizer_id = aws_apigatewayv2_authorizer.cognito.id
 }
 
+resource "aws_apigatewayv2_integration" "dispatch" {
+
+  api_id = aws_apigatewayv2_api.api.id
+
+  integration_type = "AWS_PROXY"
+  integration_uri  = aws_lambda_function.dispatcher.invoke_arn
+}
+
+resource "aws_apigatewayv2_route" "dispatch" {
+
+  api_id = aws_apigatewayv2_api.api.id
+
+  route_key = "POST /dispatch"
+
+  target = "integrations/${aws_apigatewayv2_integration.dispatch.id}"
+
+  authorization_type = "JWT"
+
+  authorizer_id = aws_apigatewayv2_authorizer.cognito.id
+}
+
 data "aws_caller_identity" "current" {}
 
 resource "aws_kms_key" "log_key" {
