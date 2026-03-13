@@ -59,7 +59,7 @@ resource "aws_lambda_permission" "apigw_greeter" {
   statement_id  = "AllowAPIGatewayInvokeGreeter"
 
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.greet.function_name
+  function_name = aws_lambda_function.greeter.function_name
 
   principal     = "apigateway.amazonaws.com"
 
