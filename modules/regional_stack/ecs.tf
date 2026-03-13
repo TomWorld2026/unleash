@@ -53,6 +53,15 @@ resource "aws_s3_bucket" "vpc_flow_logs" {
   bucket = "ydd-vpc-flow-logs-${var.region}"
 }
 
+resource "aws_s3_bucket_public_access_block" "vpc_flow_logs_block" {
+  bucket = aws_s3_bucket.vpc_flow_logs.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
