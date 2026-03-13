@@ -10,6 +10,13 @@ def lambda_handler(event, context):
         taskDefinition=os.environ["TASK"],
         launchType="FARGATE",
 
+        networkConfiguration={
+            "awsvpcConfiguration": {
+                "subnets": [os.environ["SUBNET"]],
+                "securityGroups": [os.environ["SECURITY_GROUP"]],
+                "assignPublicIp": "ENABLED"
+            }
+        }
     )
 
     return {"statusCode":200}
