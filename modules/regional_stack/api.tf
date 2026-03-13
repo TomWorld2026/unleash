@@ -49,7 +49,7 @@ resource "aws_apigatewayv2_route" "dispatch" {
 data "aws_caller_identity" "current" {}
 
 resource "aws_kms_key" "log_key" {
-  description             = "KMS key for API Gateway logs"
+  description             = "KMS key for logs"
   deletion_window_in_days = 7
   enable_key_rotation     = true
 

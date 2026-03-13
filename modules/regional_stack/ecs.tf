@@ -7,17 +7,6 @@ resource "aws_ecs_cluster" "cluster" {
   }
 }
 
-data "aws_vpc" "default" {
-  default = true
-}
-
-data "aws_subnets" "public" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
-  }
-}
-
 resource "aws_ecs_task_definition" "dispatch_task" {
 
   family                   = "dispatch-task-${var.region}"
@@ -62,6 +51,9 @@ resource "aws_flow_log" "vpc_flow_log" {
 
 resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
   name = "VPC Flow Logs - ${var.region}"
+
+  retention_in_days = 7
+  kms_key_id        = aws_kms_key.log_key.arn
 }
 
 data "aws_iam_policy_document" "assume_role" {
