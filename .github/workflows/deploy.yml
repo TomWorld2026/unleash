@@ -82,11 +82,11 @@ jobs:
       - name: Initialiser Terraform
         run: terraform init 
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
 
-      # - name: Terraform Destroy
-      #   run: terraform destroy -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
 
       - name: Test Placeholder
         run: echo "Run test_script.py here"
