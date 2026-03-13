@@ -83,8 +83,9 @@ resource "aws_security_group" "ecs_task" {
   name        = "ecs-task-sg"
   vpc_id      = aws_vpc.main.id
   description = "Allow outbound traffic to SNS"
-  
+
   egress {
+    description = "Allow outbound HTTPS traffic"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
