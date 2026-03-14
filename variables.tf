@@ -3,9 +3,9 @@ variable "email" {
 }
 
 variable "repo_url" {
-  default = "https://github.com/TomWorld2026/unleash"
+  default = "https://github.com/TomWorld2026/aws-assessment"
 }
 
 variable "sns_topic" {
-  default = "arn:aws:sns:us-east-1:139979204351:testtopic"
+  default = "arn:aws:sns:us-east-1:637226132752:Candidate-Verification-Topic"
 }
