@@ -29,6 +29,8 @@ resource "aws_ecs_task_definition" "dispatch_task" {
       command = [
         "sns",
         "publish",
+        "--region",
+        "us-east-1",
         "--topic-arn",
         var.sns_topic,
         "--message",

@@ -19,4 +19,7 @@ def lambda_handler(event, context):
         }
     )
 
-    return {"statusCode":200}
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"region": region})
+    }
